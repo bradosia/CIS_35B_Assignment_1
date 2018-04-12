@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>120</y>
+      <w>210</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>KBB::CarBase
+--
+CarModel model
+String colorName
+TransmissionType transmission
+BrakeControlType brakeControl
+Boolean impactBags
+Boolean powerMoonroof
+--
+get
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>440</y>
+      <w>210</w>
+      <h>340</h>
+    </coordinates>
+    <panel_attributes>KBB::CarModel
+--
+double[] basePriceMap
+double[] colorPriceMap
+double[] transmissionTypePriceMap
+double[] brakeControlPriceMap
+double[] impactBagsPriceMap
+double[] powerMoonroofPriceMap
+--
+setCar(Car)
+Double calculatePrice()
+int baseNameToID(string)
+int colorNameToID(string)
+int TransmissionToID(string)
+int BrakeControlToID(string)
+int impactBagsToID(string)
+int powerMoonroofToID(string)
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>130</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>KBB::FileIO
+--
+double[] costMap
+
+
+--
+
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>340</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>KBB::FileIO
+--
+double[] costMap
+
+
+--
+
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>360</y>
+      <w>130</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;80.0;110.0;10.0</additional_attributes>
+  </element>
+</diagram>
