@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>480</x>
-      <y>120</y>
+      <x>550</x>
+      <y>90</y>
       <w>210</w>
       <h>250</h>
     </coordinates>
@@ -18,11 +18,7 @@ BrakeControlType brakeControl
 Boolean impactBags
 Boolean powerMoonroof
 --
-get
---
-Responsibilities
--- Resp1
-*-- Resp2*</panel_attributes>
+get</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -49,11 +45,7 @@ int colorNameToID(string)
 int TransmissionToID(string)
 int BrakeControlToID(string)
 int impactBagsToID(string)
-int powerMoonroofToID(string)
---
-Responsibilities
--- Resp1
-*-- Resp2*</panel_attributes>
+int powerMoonroofToID(string)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -70,11 +62,7 @@ double[] costMap
 
 
 --
-
---
-Responsibilities
--- Resp1
-*-- Resp2*</panel_attributes>
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -91,22 +79,18 @@ double[] costMap
 
 
 --
-
---
-Responsibilities
--- Resp1
-*-- Resp2*</panel_attributes>
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>490</x>
-      <y>360</y>
-      <w>130</w>
-      <h>100</h>
+      <y>330</y>
+      <w>200</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;80.0;110.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;180.0;10.0</additional_attributes>
   </element>
 </diagram>

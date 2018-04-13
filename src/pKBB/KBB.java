@@ -31,6 +31,13 @@ public class KBB {
 			} catch (IOException e) {
 			}
 		}
+		
+		cAutomobile FordZTW = new cAutomobile();
+		FordZTW.example();
+		FordZTW.print();
+		pKBB.autoutil.FileIO.serializeAuto(FordZTW);
+		
+		
 
 		// print out the list
 		System.out.println(list);

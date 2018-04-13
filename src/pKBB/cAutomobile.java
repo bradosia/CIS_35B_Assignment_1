@@ -1,6 +1,16 @@
 package pKBB;
 
-public class cModel {
+public class cAutomobile implements java.io.Serializable {
+	private transient long serialVersionUID;
+
+	public void example() {
+
+	}
+
+	public void print() {
+
+	}
+
 	class Automotive { // This class will represent the Model.
 		String name;
 		OptionSet opset[];
