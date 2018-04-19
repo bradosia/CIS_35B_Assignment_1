@@ -1,6 +1,6 @@
-package pKBB;
+package model;
 
-public class cAutomobile implements java.io.Serializable {
+public class Automobile implements java.io.Serializable {
 	private transient long serialVersionUID;
 
 	public void example() {
@@ -12,7 +12,8 @@ public class cAutomobile implements java.io.Serializable {
 	}
 
 	class Automotive { // This class will represent the Model.
-		String name;
+		String modelName; // technically the make and model
+		double basePrice;
 		OptionSet opset[];
 
 		void Model(int size, String n) {
