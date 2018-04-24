@@ -13,14 +13,10 @@ public class Driver {
 
 	public static void main(String[] args) {
 		util.FileIO autoutil = new util.FileIO();
-		
-		autoutil.read("FordZTW.txt");
-		
 		Automobile FordZTW = new Automobile();
-		FordZTW.example();
+		autoutil.read("FordZTW.txt", FordZTW);
 		FordZTW.print();
-		
-		autoutil.serializeAuto(FordZTW);
+		autoutil.serialize("FordZTW.data", FordZTW);
 	}
 
 }

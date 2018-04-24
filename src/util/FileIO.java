@@ -1,6 +1,10 @@
 package util;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.*;
@@ -9,11 +13,15 @@ import model.Automobile;
 
 import java.util.Scanner;
 import java.util.Map;
-import java.util.HashMap;
+i//mport java.util.HashMap;
 
 public class FileIO {
-	public void read(String fileName) {
-		Map<String, Integer> aMap = new HashMap<String, Integer>();
+	public void read(String fileName, Automobile autoObj) {
+		File fileIn = new File(fileName);
+		Scanner sc = new Scanner(fileIn);
+		
+		
+		//Map<String, Integer> aMap = new HashMap<String, Integer>();
 
 		List<Integer> list = new ArrayList<Integer>();
 		File file = new File(fileName);
@@ -76,7 +84,7 @@ public class FileIO {
 		}
 	}
 
-	public void serializeAuto(Automobile autoObj) {
+	public void serialize(String fileName, Automobile autoObj) {
 
 		try {
 			FileOutputStream fileOut = new FileOutputStream("test.dat");
