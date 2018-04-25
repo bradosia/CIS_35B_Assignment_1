@@ -1,74 +1,52 @@
 package util;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner
-
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.*;
+import java.io.*;
 
 import model.Automobile;
 
-import java.util.Scanner;
-import java.util.Map;
-i//mport java.util.HashMap;
-
 public class FileIO {
+	/*
+	 * File pattern: newline (\n) separates different optionSet colon ":" separates
+	 * optionSetName and optionSetOptions optionSetOptions may span multiple lines
+	 * as long as no new optionSetName is found comma "," separates different
+	 * optionSetOptions slash "/" separates different option values
+	 */
 	public void read(String fileName, Automobile autoObj) {
-		File fileIn = new File(fileName);
-		Scanner sc = new Scanner(fileIn);
-		
-		
-		//Map<String, Integer> aMap = new HashMap<String, Integer>();
-
-		List<Integer> list = new ArrayList<Integer>();
-		File file = new File(fileName);
+		String optionSetName;
+		String optionSetOptions;
+		String optionSetOptionName;
+		String lineNext;
 		BufferedReader reader = null;
+		int optionSetObjectIndex = -1;
 
 		try {
-			reader = new BufferedReader(new FileReader(file));
-			String text = null;
-			String attributeName;
-			String attributeValue;
-			String attributeValueItem;
+			reader = new BufferedReader(new FileReader(new File(fileName)));
+			while ((lineNext = reader.readLine()) != null) {
+				// optionSet
+				if (lineNext.indexOf(':') != -1) {
+					String[] optionSetParts = lineNext.split(":");
+					optionSetName = optionSetParts[0].trim();
+					optionSetOptions = optionSetParts[1];
+					optionSetObjectIndex = autoObj.setOptionSet(optionSetName);
+				} else {
+					/*
+					 * whole line is options if the optionSetName not found This allows options to
+					 * be split on multiple lines for file readability.
+					 */
+					optionSetOptions = lineNext;
+				}
+				// optionSet options
+				if (optionSetOptions.indexOf(',') != -1 && optionSetObjectIndex != -1) {
+					for (String optionPart : optionSetOptions.split(",")) {
+						if (optionPart.indexOf('/') != -1) {
+							String[] optionValueParts = optionPart.split("/");
+							optionSetOptionName = optionValueParts[0];
+							autoObj.setOptionSetOption(optionSetObjectIndex, optionValueParts[0].trim(),
+									Double.parseDouble(optionValueParts[1].trim()));
+						}
 
-			while ((text = reader.readLine()) != null) {
-				if (text.indexOf(':') != -1) {
-					// attribute name found
-					Scanner scan = new Scanner(text);
-					scan.useDelimiter(":");
-					if (scan.hasNextLine()) {
-						attributeName = scan.next();
-						attributeName = attributeName.trim();
-						System.out.println("Attribute Name: " + attributeName);
-					}
-					if (scan.hasNextLine()) {
-						text = scan.next();
 					}
 				}
-				// handle attribute values
-				Scanner scan = new Scanner(text);
-				scan.useDelimiter(",");
-				while (scan.hasNextLine()) {
-					int optionPrice = 0;
-					attributeValueItem = scan.next();
-					Matcher m = Pattern.compile("\\(([^)]+)\\)").matcher(attributeValueItem);
-					if (m.find()) {
-						optionPrice = Integer.parseInt(m.group(1));
-					}
-					int openParanthesisPos = attributeValueItem.indexOf('(');
-					if (openParanthesisPos != -1) {
-						attributeValueItem = attributeValueItem.substring(0, openParanthesisPos);
-					}
-					attributeValueItem = attributeValueItem.trim();
-					if (attributeValueItem.length() > 1) {
-						System.out.println("Attribute Option: " + attributeValueItem + " Price: " + optionPrice);
-					}
-				}
-
-				// list.add(Integer.parseInt(text));
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -85,16 +63,30 @@ public class FileIO {
 	}
 
 	public void serialize(String fileName, Automobile autoObj) {
-
 		try {
-			FileOutputStream fileOut = new FileOutputStream("test.dat");
+			FileOutputStream fileOut = new FileOutputStream(fileName);
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			out.writeObject(autoObj);
 			out.close();
 			fileOut.close();
-			System.out.printf("Serialized data is saved in test.dat");
+			System.out.println("Serialized data is saved in " + fileName);
 		} catch (IOException i) {
 			i.printStackTrace();
+		}
+	}
+
+	public void deserialize(String fileName, Automobile autoObj) {
+		try {
+			FileInputStream fileIn = new FileInputStream(fileName);
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			autoObj = (Automobile) in.readObject();
+			in.close();
+			fileIn.close();
+			System.out.println("Deserialized data read from " + fileName);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 }
